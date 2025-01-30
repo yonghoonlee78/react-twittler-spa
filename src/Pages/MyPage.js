@@ -25,7 +25,7 @@ const MyPage = () => {
         </div>
       </div>
       <ul className="tweets__mypage">
-        {/* TODO : dummyTweets중 Alice 이 작성한 트윗 메세지만 있어야 합니다. */}
+        {/* TODO : dummyTweets중 Alice가 작성한 트윗 메세지만 있어야 합니다. */}
         <li className="tweet" id={''}>
           <div className="tweet__profile">
             <img src={''} />
