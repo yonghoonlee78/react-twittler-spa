@@ -1,176 +1,316 @@
-* {
-  box-sizing: border-box;
-  font-size: 16px;
-  margin: 0;
-  padding: 0;
-}
+
+
 
 :root {
   --main-border-color: rgb(235, 238, 240);
-  --point-color: rgb(64, 0, 199);
-  --point-color-tint: rgb(159, 127, 227);
+  --point-color: #1da1f2; 
+  --point-color-tint: #e8f5fe; 
   --default-text-color: rgb(0, 0, 0);
   --sub-text-color: rgb(91, 112, 131);
   --bold-text-color: rgb(15, 20, 25);
   --button-text-color: rgb(255, 255, 255);
   --shade-color: rgb(229, 229, 229);
+
+  
+  --tweets-bg-color: #e6f7ff; 
+  --about-bg-color: #e6ffe6; 
+  --mypage-bg-color: #fff0e6; 
+  --settings-bg-color: #f0e6ff; 
+
   --mypage-component-color: #eb9705;
   --about-component-color: #097e4d;
-  --tweets-component-color: #003380;
+  --tweets-component-color: #f7f9f9;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-}
 
-button,
-input,
-optgroup,
-select,
-textarea {
-  font-family: inherit; /* 1 */
-  font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
-  margin: 0; /* 2 */
-  border: 0;
-}
-
-button,
-input {
-  overflow: visible; /* 1 */
-}
-
-button {
-  color: var(--button-text-color);
-}
-
-button:hover,
-button:focus {
-  background: var(--point-color);
-}
-
-button:focus {
-  outline: 1px solid #fff;
-  outline-offset: -4px;
-}
-
-button:active {
-  transform: scale(0.99);
-}
-
-textarea {
-  overflow: auto;
-  resize: none;
-}
 
 .App {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  max-width: 1200px; 
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 footer {
   flex: 0 0 1rem;
-  padding: 0.3rem;
+  padding: 0.8rem;
   text-align: right;
+  color: var(--sub-text-color);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--main-border-color);
 }
 
 main {
   display: flex;
   flex-direction: row;
-  max-width: 640px;
   flex: 1 0 0;
 }
+
 
 .sidebar {
   display: flex;
   flex-direction: column;
+  width: 250px; 
+  border-right: 1px solid var(--main-border-color);
+  padding-top: 1rem;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
 }
 
-.far,
-.fas {
-  font-size: 2rem;
-  color: var(--default-text-color);
-  padding: 1.3rem;
-  cursor: pointer;
+.sidebar-header {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--point-color);
 }
+
+.sidebar-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  margin: 0 15px 8px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.1s ease;
+  text-decoration: none;
+  color: var(--bold-text-color);
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.sidebar-menu-item:hover {
+  background-color: var(--point-color-tint);
+  color: var(--point-color);
+  transform: translateY(-1px);
+}
+
+.sidebar-menu-item.active {
+  background-color: var(--point-color);
+  color: var(--button-text-color);
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-menu-item .icon {
+  font-size: 1.8rem;
+  margin-right: 15px;
+  color: inherit;
+}
+
+.sidebar-menu-item.tweets-link {
+  background-color: var(--tweets-bg-color);
+}
+.sidebar-menu-item.about-link {
+  background-color: var(--about-bg-color);
+}
+.sidebar-menu-item.mypage-link {
+  background-color: var(--mypage-bg-color);
+}
+.sidebar-menu-item.settings-link {
+  background-color: var(--settings-bg-color);
+}
+
+.sidebar-menu-item.active.tweets-link,
+.sidebar-menu-item.active.about-link,
+.sidebar-menu-item.active.mypage-link,
+.sidebar-menu-item.active.settings-link {
+  background-color: var(--point-color);
+}
+
+
 
 .features {
-  width: 564px;
   display: flex;
-  flex-direction: column;
-  border: 1px solid var(--main-border-color);
-  flex: 1 0 0;
+  flex-direction: column; 
+  flex: 1; 
+  overflow-y: auto; 
 }
+
 
 .tweetForm__container {
   border-bottom: 1px solid var(--main-border-color);
-  margin-bottom: 0.5rem;
+  background-color: white;
 }
 
 .tweetForm__wrapper {
   display: flex;
   flex-direction: row;
-  padding: 0.5rem 1rem;
-  background-color: var(--tweets-component-color);
-}
-
-.tweetForm__profile {
-  padding: 0.2rem;
-}
-
-.tweetForm__profile > img {
-  display: inline-block;
-  width: 50px;
-  border-radius: 100%;
+  padding: 1rem;
 }
 
 .tweetForm__input {
   display: flex;
-  justify-content: center;
-  align-content: center;
   flex-direction: column;
   flex: 1 0 0;
 }
 
 .tweetForm__inputWrapper {
   display: flex;
-  margin: 0.5rem;
-  flex: 0 0 4rem;
+  flex: 1 0 auto;
+  margin-bottom: 10px;
 }
 
 .tweetForm__textarea {
   flex: 1 0 0;
-  border: 0;
+  border: 1px solid var(--main-border-color);
+  border-radius: 8px;
+  outline: none;
+  font-size: 1.1rem;
+  padding: 12px;
+  color: var(--bold-text-color);
+  resize: vertical;
+  min-height: 80px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.tweetForm__count {
-  margin: 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.tweetForm__count__text {
-  color: white;
+.tweetForm__textarea:focus {
+  border-color: var(--point-color);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 3px rgba(29, 161, 242, 0.2);
 }
 
 .tweetForm__submit {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
+  align-items: center;
   flex: 1 0 0;
+  padding-top: 5px;
 }
 
-.tweetForm__submitIcons {
-  flex: 1 0 0;
+.tweetForm__count {
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.tweetForm__count__text {
+  color: var(--sub-text-color);
+  font-size: 0.9rem;
 }
 
 .tweetForm__submitButton {
-  background-color: var(--point-color-tint);
-  margin: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
+  background-color: var(--point-color);
+  color: var(--button-text-color);
+  margin-left: 10px;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
 }
+
+.tweetForm__submitButton:hover {
+  background-color: #1a8cd8;
+}
+
+.tweetForm__submitButton:active {
+  transform: scale(0.98);
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--bold-text-color);
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--main-border-color);
+  background-color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tweets-list {
+  display: flex;
+  flex-direction: row; 
+  flex-wrap: wrap; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  padding: 10px; 
+  gap: 15px; 
+  background-color: var(--tweets-component-color); 
+  flex: 1; 
+  overflow-y: auto; 
+}
+
+
+.tweet {
+  display: flex;
+  flex-direction: column; 
+  width: calc(33.33% - 15px); 
+  /* 또는 고정 너비: width: 300px; */
+  min-width: 280px; 
+  background-color: white;
+  border: 1px solid var(--main-border-color);
+  border-radius: 12px; 
+  padding: 15px; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); 
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.tweet:hover {
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+}
+
+.tweet__profile-image {
+  margin-bottom: 10px; 
+}
+
+.tweet__profile-image > img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.tweet__content {
+  flex: 1; 
+}
+
+.tweet__header {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 8px; 
+}
+
+.tweet__username {
+  font-weight: bold;
+  color: var(--bold-text-color);
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
+.tweet__handle {
+  color: var(--sub-text-color);
+  font-size: 0.9rem;
+  margin-right: 8px;
+}
+
+.tweet__timestamp {
+  color: var(--sub-text-color);
+  font-size: 0.8rem;
+  white-space: nowrap; 
+}
+
+.tweet__text {
+  color: var(--default-text-color);
+  line-height: 1.5;
+  font-size: 0.95rem;
+  word-wrap: break-word; 
+  overflow: hidden; 
+  display: -webkit-box;
+  -webkit-line-clamp: 5; 
+  -webkit-box-orient: vertical;
+}
+
